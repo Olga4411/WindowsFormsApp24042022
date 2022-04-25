@@ -70,5 +70,40 @@ namespace WindowsFormsApp24042022
                 }
             }
         }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if(saveFileDialog1.ShowDialog()==DialogResult.OK)
+            {
+                if (saveFileDialog1.FileName == "") return;
+                else
+                {
+                    using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
+                    {
+                        sw.Write(richTextBox1.Text);
+                    }
+                }
+            }
+        }
+
+        private void fontDialog1_Apply(object sender, EventArgs e)
+        {
+            fontDialog1.ShowColor = false;
+            fontDialog1.Font = richTextBox1.SelectionFont;
+            if(fontDialog1.ShowDialog()==DialogResult.OK)
+            {
+                richTextBox1.SelectionFont = fontDialog1.Font;
+            }
+        }
+
+        private void colorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog cl = new ColorDialog();
+            cl.Color = richTextBox1.SelectionColor;
+            if (cl.ShowDialog() == DialogResult.OK)
+            {
+                richTextBox1.SelectionColor = cl.Color;
+            }
+        }
     }
 }
